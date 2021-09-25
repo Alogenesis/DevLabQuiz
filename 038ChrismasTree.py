@@ -29,15 +29,72 @@ Input : 3
 ===V===
 '''
 
-inp = int(input(">> "))
-print(type(inp))
 
-space = inp+1
-x = 1
-for i in range(inp):
-    while inp != x :
-        x = 1
-        print((' '*space) + ("*"*(2*x-1)) )
-        x += 1
-        print((" "*(space-1)) + ("*"*(2*x-1)) )
+'''     ช่วงกระดาษทดเลข 
 
+user_input = int(input(">> "))
+print('User input type =', type(user_input) , 'Value =', user_input) #execute
+
+space = user_input+1
+x = 0
+
+#Show input = 2
+#top
+star = 1
+print( (' '*(user_input+0))  +  ('*') )
+#print('Space =', space)
+#print('x =', x)
+#print('Assign x = x+1')
+star = star +2
+print( (" "*(user_input-1))  +  ("*"*star) )
+
+#middle
+star = 1
+print( (' '*(user_input+0))  +  ('*') )
+star = star +2
+print( (" "*(user_input-1))  +  ("*"*star) )
+star = star +2
+print( (" "*(user_input-2))  +  ("*"*star) )
+#print( (" "*(user_input-1))  +  ("***") )
+#print( (" "*(user_input-2))  +  ("*****") )
+
+#bottom
+print( (' '*(user_input+0))  +  ('/') )
+print( ('='*(user_input-0)) + 'V' + ('='*user_input) )
+'''
+
+
+
+
+#Top
+user_input = int(input(">> "))
+star = 1
+space = user_input
+for a in range(0,2):
+    print( (" "*(space))  +  ("*"*star) )
+    star += 2
+    space -= 1
+
+
+#Middle Algorithm
+row = 3
+#value = 1
+last_row = user_input +1
+repeat = user_input -1
+
+
+for j in range(0,repeat):
+    # Value for print star
+    star = 1
+    space = user_input
+    for k in range(0,row):
+        print( (" "*(space))  +  ("*"*star) )
+        star += 2
+        space -= 1
+        #value += 1
+    row +=1
+    #value = 1
+
+#bottom
+print( (' '*(user_input+0))  +  ('/') )
+print( ('='*(user_input-0)) + 'V' + ('='*user_input) )

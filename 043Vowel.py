@@ -26,3 +26,13 @@ In :
 Out :
 Position: 1,7,9
 '''
+
+
+for i in x:
+  if i in vowel:
+    pass
+  else:
+    out.append(i)
+#print(out)
+for i in out:
+	print(i, end='')

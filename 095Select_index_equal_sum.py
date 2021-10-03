@@ -17,9 +17,66 @@ a1 = x.replace('[','')
 a2 = a1.replace(']','')
 lib_list_str = a2.split(',')
 lib_list = []
+checker_list = []
 for g in lib_list_str:
     lib_list.append(int(g))
+    checker_list.append(int(g))
 
+print(lib_list)
+checker_list.sort(reverse=True)
+print(checker_list)
+print(lib_list)
+
+answer_list = []
+reserve_list = []
+
+if lib_list[0] == 1:
+    for i in range(0, 4):
+        for j in range(0, 4):
+            if lib_list[i] + lib_list[j] == y:
+                answer_list.append(j)
+                answer_list.append(i)
+                if i > j:
+                    print(i, j)
+                else:
+                    pass
+
+else :
+    for i in range(0,4):
+        for j in range(0, 4):
+            if lib_list[j] + lib_list[i] == y:
+                answer_list.append(j)
+                answer_list.append(i)
+                if j >= i :
+                    print(j,i)
+                else:
+                    pass
+
+print(answer_list)
+
+
+
+
+'''
+last_answer = answer_list
+print(last_answer)
+print(len(last_answer) / 2)
+if len(last_answer) == 8:
+    counter = 2
+else:
+    counter = 1
+an = 0
+bn = 1
+while counter != 0:
+    print(last_answer[an],last_answer[bn])
+    an += 2
+    bn += 2
+    counter -= 1
+'''
+
+
+
+'''
 i_index_count = 0
 n_index_count = 0
 
@@ -74,3 +131,4 @@ while counter != 0:
     an += 2
     bn += 2
     counter -= 1
+'''

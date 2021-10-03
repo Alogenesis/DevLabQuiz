@@ -17,3 +17,12 @@ c = int(cf)
 d = int(df)
 e = int(ef)
 f = int(ff)
+
+A = a*c*e
+B = (a*c*f) + (a*d*e) + (b*c*e)
+C = (a*d*f) + (b*c*f) + (b*d*e)
+D = b*d*f
+print(A,B,C,D)
+'''
+(ace)*X^3 + (acf + ade + bce)*X^2 + (adf + bcf + bde)*X + bdf
+'''

@@ -39,13 +39,27 @@ r = int(xx[1])
 
 half = int(n/2)
 
+# Uncut Diamond
 uncut = []
 for i in range(0,half):
     uncut.append('*'*n)
 print(uncut)
 
+# cut Diamond
 cutter = []
 for i in range(0,r):
-    x = '-'*(i+1) + '*'*(n-(i*2)) + '-'*(i+1)
+    x = '-'*(i+1) + '*'*(n-(2 + i*2)) + '-'*(i+1)
     cutter.append(x)
+cutter.reverse()
 print(cutter)
+
+
+# Replace cut diamond to uncut
+for i in range(0,len(cutter)) :
+    uncut[i] = cutter[i]
+print(uncut)
+
+for i in uncut:
+    print(i)
+for i in reversed(uncut):
+    print(i)

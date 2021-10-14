@@ -3,50 +3,33 @@
 An = Sqrt(1+ (An + 1)**2)
 '''
 import math
-'''
+
 member_input = int(input())
 n_lib = []
 for i in range(0,member_input):
     n = int(input())
     n_lib.append(n)
 
-print(n_lib)
-'''
-#find an
-a_val = []
+#print(n_lib)
 
-a0 = 0
-a_val.append(a0)
+# Algorhytm
+sqrt_lib = [1]
 
-a1 = math.sqrt(1+ (a0**2))
-a_val.append(a1)
+def find_an(n):
+    An = math.sqrt(1 + (sqrt_lib[-1])**2)
+    sqrt_lib.append(An)
 
-a2 = math.sqrt(1+ (a1**2))
-a_val.append(a2)
+# Loop for root n value
+for i in n_lib:
+    nloop = i
+    # Algorhytm
+    for i in range(1,nloop):
+        find_an(i)
+    #print(sqrt_lib)
 
-a3 = math.sqrt(1+ (a2**2))
-a_val.append(a3)
+    sum = 0
+    for i in range(0,nloop-1):
+        sum += (1 / (sqrt_lib[i] + sqrt_lib[i+1]))
 
-a4 = math.sqrt(1+ (a3**2))
-a_val.append(a4)
-
-a5 = math.sqrt(1+ (a4**2))
-a_val.append(a5)
-
-a6 = math.sqrt(1+ (a5**2))
-a_val.append(a6)
-
-print(a_val)
-
-sum6 = (1 / (a1+a2)) + (1 / (a2+a3)) + (1 / (a3+a4)) + (1 / (a4+a5)) + (1/(a5+a6))
-print(round(sum6,2))
-
-
-
-# Sn = (n/2) * (a1 + an)
-div_a1 = 1 / (a1+a2)
-div_a6 = 1/(a5+a6)
-
-s5 = (5/2) * (div_a1+div_a6)
-print(s5)
-
+    #print(sum)
+    print('{:.2f}'.format(sum))

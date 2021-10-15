@@ -8,6 +8,29 @@
 ระยะทางเกินกว่า 80 กิโลเมตรขึ้นไป กิโลเมตรละ 10.50 บาท
 '''
 
-x = int(input()) #ระยะเดินทาง
+s = int(input()) #ระยะเดินทาง
 
-if
+sum = 35
+while s > 1 :
+    if s > 80 :
+        sum += 10.5
+        s -= 1
+    elif 60 < s <= 80 :
+        sum += 9
+        s -= 1
+    elif 40 < s <= 60 :
+        sum += 8
+        s -= 1
+    elif 20 < s <= 40 :
+        sum += 7.5
+        s -= 1
+    elif 10 < s <= 20 :
+        sum += 6.5
+        s -= 1
+    elif 1 < s <= 10 :
+        sum += 5.5
+        s -= 1
+    else:
+        print('go else')
+
+print(sum)

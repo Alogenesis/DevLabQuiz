@@ -24,11 +24,11 @@ b_get = input()
 
 aspl = a_get.split(' ')
 a_line = int(aspl[0])        # แถว A
-a_column = int(aspl[1])      # ค่า A
+a_column = int(aspl[1])      # ค่า A หลัก
 
 bspl = b_get.split(' ')
 b_line = int(bspl[0])        # แถว B
-b_column = int(bspl[1])      # ค่า B
+b_column = int(bspl[1])      # ค่า B หลัก
 
 
 #for loop get All A
@@ -86,49 +86,60 @@ print(b_tb_lip)
 a = a_get_matrix
 b = b_tb_lip
 
-# จะคูณได้ไม่ได้ขึ้นอยู่กับว่า แนวนอนของ A == แนวตั้งของ B มั้ย
-'''
-a_dimension = [3,3]
-b_dimension = [3,2]
-a = [[1,3,4],
-     [3,2,2],
-     [1,2,3]]
-b = [[1,2],
-     [3,4],
-     [5,6]]
+# จะคูณได้ไม่ได้ขึ้นอยู่กับว่า จำนวนตั้งของ A == จำนวนบรรทัดของ B มั้ย
+if a_column != b_line:  # ถ้าแนวนอน A ไม่เท่ากับ B คูณไม่ได้
+    print('Cant calculate !')
+else:  # ถ้าคูณได้
 
-b_prep = [[1,3,5],[2,4,6]]
-'''
+    answer_matrix = []
 
+    for j in range(0,a_column): #run A0x A1x A2x
+        # A0x run to 00 position
+        po00 = 0
+        for i in range(0,b_column):
+            po00 += a[j][i]*b[0][i]
+        print(po00)
+        answer_matrix.append(po00)
 
-answer_matrix = []
+        # A0x run to 01 position
+        po01 = 0
+        for i in range(0,b_column):
+            po01 += a[j][i]*b[1][i]
+        print(po01)
+        answer_matrix.append(po01)
 
-for j in range(0,3): #run A0x A1x A2x
-    # A0x run to 00 position
-    po00 = 0
-    for i in range(0,3):
-        po00 += a[j][i]*b[0][i]
-    print(po00)
-    answer_matrix.append(po00)
-
-    # A0x run to 01 position
-    po01 = 0
-    for i in range(0,3):
-        po01 += a[j][i]*b[1][i]
-    print(po01)
-    answer_matrix.append(po01)
-
-print(answer_matrix)
-
-# เมตริกที่คูณกัน มิติใหม่ที่ได้ คือ Amp x Bpn = Cmn คือ แถวA(เลขหน้าA) คอลัมน์B(เลขหลังB)
-# จากข้อนี้จะได้ 3 แถว 2 ค่า
-
-# หาว่า print กี่ค่าต่อ 1 บรรทัด
-n_val_inline = b_column  #n = เลขหลังของ B  n  = ค่าต่อบรรทัด
-m_val_column = a_line    #m = เลขหน้าของ A  m  = บรรทัด
+    print(answer_matrix)
 
 
-# Loop i in ans matrix
+
+    # เมตริกที่คูณกัน มิติใหม่ที่ได้ คือ Amp x Bpn = Cmn คือ # แถว(บรรทัด)A x หลัก(ตั้ง)B
+    # จากข้อนี้จะได้ 3 แถว 2 ค่า
+
+    # หาว่า print กี่ค่าต่อ 1 บรรทัด
+    n_val_inline = b_column  #n = เลขหลังของ B  n  = ค่าต่อบรรทัด
+    m_val_column = a_line    #m = เลขหน้าของ A  m  = บรรทัด
+
+
+    # จัดเรียง Matrix
+    new_matrix = []
+    complex_matrix = []
+    while len(answer_matrix) > 0:
+        # Add เลขหน้า 2 ครั้ง
+        for i in range(0,n_val_inline) : # 2 คือ เลขค่า
+            new_matrix.append(answer_matrix[i])
+        # Pop เลขหน้าทิ้ง 2 ครั้ง
+        for i in range(0,n_val_inline) : # 2 คือ เลขค่า
+            answer_matrix.pop(0)
+
+        complex_matrix.append(new_matrix)
+        new_matrix = []
+    print(complex_matrix)
+
+    for i in complex_matrix:
+        print('[',end='')
+        print(*i,end='')
+        print(']')
+
 
 
 

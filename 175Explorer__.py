@@ -37,3 +37,74 @@ concept
 บรรทัด 4 เช็ค 5 มี #
 บรรทัด 5 เช็ค 4 มี # 1 และไม่มี # 1
 '''
+
+class NumIsland:
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        if not grid:
+            return 0
+
+        m = len(grid)
+        n = len(grid[0])
+        sum = 0
+
+        for i in range(m):
+            for j in range(n):
+
+                if grid[i][j] == ".":
+                    continue
+                else:
+
+                    # sum up only once per chance of meeting "1"
+                    sum += 1
+                    stack = list()
+                    stack.append([i, j])
+
+                    # visit each "1" in the adjacent area using a stack
+                    while len(stack) != 0:
+
+                        [p, q] = stack.pop()
+
+                        if p >= 1 and grid[p - 1][q] == "#":
+                            stack.append([p - 1, q])
+
+                        if p < m - 1 and grid[p + 1][q] == "#":
+                            stack.append([p + 1, q])
+
+                        if q >= 1 and grid[p][q - 1] == "#":
+                            stack.append([p, q - 1])
+
+                        if q < n - 1 and grid[p][q + 1] == "#":
+                            stack.append([p, q + 1])
+
+                        # mark as visited
+                        grid[p][q] = "."
+
+        return sum
+
+
+a = input()
+b,c = a.split(' ')
+val = int(b)
+loop = int(c)
+
+grid = []
+for i in range(0,loop):
+    get = input()
+    lst = []
+    for j in get:
+        lst.append(j)
+    grid.append(lst)
+
+print(grid)
+
+
+
+
+
+
+
+NumIsland.numIslands(self, grid)

@@ -49,7 +49,7 @@ situation 2
 
 print('a =', a)
 print('b =', b)
-pre_answer = []
+
 
 
 lst = []
@@ -81,28 +81,24 @@ print(mat_sum)
 
 
 
-'''
-    second = []
-    for i in range(0,b_column): #ที่ A01 ลองคูณกับทุก B0x แล้วเก็บค่า
-        result = a[f][1]*b[1][i]
-        second.append(result)
+# จัดเรียง Matrix
+new_matrix = []
+complex_matrix = []
+while len(mat_sum) > 0:
+    # Add เลขหน้า 2 ครั้ง  = จำนวน b ค่า  (ใหม่ = A นอน B ตั้ง)
+    for i in range(0,b_column) : # 2 คือ เลขค่า
+        new_matrix.append(mat_sum[i])
+    # Pop เลขหน้าทิ้ง 2 ครั้ง
+    for i in range(0,b_column) : # 2 คือ เลขค่า
+        mat_sum.pop(0)
 
-    print('first , second = ', first, second)
-'''
-'''
-# Sum Val in index for answer
-line1_result = []
-for i in range(0,len(first)):
-    result = first[i] + second[i]
-    line1_result.append(result)
+    complex_matrix.append(new_matrix)
+    new_matrix = []
+print(complex_matrix)
 
-print('line1 Result',line1_result)
-pre_answer.append(line1_result)
-'''
-
-
-
-#Check last
-print('Pre answer',pre_answer)
+for i in complex_matrix:
+    print('[',end='')
+    print(*i,end='')
+    print(']')
 
 

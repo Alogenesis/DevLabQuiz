@@ -63,84 +63,58 @@ for i in range(0,b_line):
 
 print(b_get_matrix)     #ค่า b matrix
 
-#Transpose B
-max_tpline_b = b_column   #แถวตั้ง กลายเป็นแถวนอน   แถว
-max_tpcolumn_b = b_line   #แถวนอน กลายเป็นแถวตั้ง   ค่า
-
-#print('Here!! >', b_get_matrix[0][0], b_get_matrix[1][0], b_get_matrix[2][0])     #เอาตัวที่ 00 10 20 มา Testcode
-
-b_tb_lip = []
-#Loop Bruteforce
-for j in range(0,max_tpline_b):
-
-    # Loop transpose Column > Line
-    loop_tp_lip = []
-    for i in range(0,max_tpcolumn_b):
-        x = b_get_matrix[i][j]
-        loop_tp_lip.append(x)
-    print(loop_tp_lip)
-    b_tb_lip.append(loop_tp_lip)
-
-print(b_tb_lip)
-
 a = a_get_matrix
-b = b_tb_lip
+b = b_get_matrix
 
 # จะคูณได้ไม่ได้ขึ้นอยู่กับว่า จำนวนตั้งของ A == จำนวนบรรทัดของ B มั้ย
 if a_column != b_line:  # ถ้าแนวนอน A ไม่เท่ากับ B คูณไม่ได้
     print('Cant calculate !')
 else:  # ถ้าคูณได้
 
-    answer_matrix = []
+    lst = []
 
-    for j in range(0,a_column): #run A0x A1x A2x
-        # A0x run to 00 position
-        po00 = 0
-        for i in range(0,b_column):
-            po00 += a[j][i]*b[0][i]
-        print(po00)
-        answer_matrix.append(po00)
+    for k in range(0, a_line):  # เปลี่ยนตัวหน้า A เท่าจำนวนบรรทัดของ A (สุดท้ายเลย)
+        for j in range(0, b_column):  # Run เปลี่ยน B ที่ท้าย
+            # ans at 00
+            for i in range(0, a_column):
+                result = a[k][i] * b[i][j]
+                lst.append(result)
 
-        # A0x run to 01 position
-        po01 = 0
-        for i in range(0,b_column):
-            po01 += a[j][i]*b[1][i]
-        print(po01)
-        answer_matrix.append(po01)
+    print(lst)
 
-    print(answer_matrix)
+    # บวกเลข x จำนวน แล้วให้เป็น 1 ตำแหน่งของ last matrix
+    forpop_lst = lst
+    mat_sum = []
+    while len(forpop_lst) > 0:
+        # start
+        sum_lst = 0
+        for i in range(0, a_column):  # กี่ตัวบวกกันถึงจะได้ 1 ค่า ดูจากว่า A ที่ชนมีกี่อัน == a_col
+            sum_lst += forpop_lst[i]
+        mat_sum.append(sum_lst)
 
-
-
-    # เมตริกที่คูณกัน มิติใหม่ที่ได้ คือ Amp x Bpn = Cmn คือ # แถว(บรรทัด)A x หลัก(ตั้ง)B
-    # จากข้อนี้จะได้ 3 แถว 2 ค่า
-
-    # หาว่า print กี่ค่าต่อ 1 บรรทัด
-    n_val_inline = b_column  #n = เลขหลังของ B  n  = ค่าต่อบรรทัด
-    m_val_column = a_line    #m = เลขหน้าของ A  m  = บรรทัด
-
+        for i in range(0, a_column):  # pop ทิ้งเท่ากับตัวที่บวกไปแล้ว
+            forpop_lst.pop(0)
+    print(mat_sum)
 
     # จัดเรียง Matrix
     new_matrix = []
     complex_matrix = []
-    while len(answer_matrix) > 0:
-        # Add เลขหน้า 2 ครั้ง
-        for i in range(0,n_val_inline) : # 2 คือ เลขค่า
-            new_matrix.append(answer_matrix[i])
+    while len(mat_sum) > 0:
+        # Add เลขหน้า 2 ครั้ง  = จำนวน b ค่า  (ใหม่ = A นอน B ตั้ง)
+        for i in range(0, b_column):  # 2 คือ เลขค่า
+            new_matrix.append(mat_sum[i])
         # Pop เลขหน้าทิ้ง 2 ครั้ง
-        for i in range(0,n_val_inline) : # 2 คือ เลขค่า
-            answer_matrix.pop(0)
+        for i in range(0, b_column):  # 2 คือ เลขค่า
+            mat_sum.pop(0)
 
         complex_matrix.append(new_matrix)
         new_matrix = []
     print(complex_matrix)
 
     for i in complex_matrix:
-        print('[',end='')
-        print(*i,end='')
+        print('[', end='')
+        print(*i, end='')
         print(']')
-
-
 
 
 
